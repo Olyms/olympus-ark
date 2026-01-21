@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mercado | OLYMPUS ARK</title>
+  <link rel="stylesheet" href="estilos.css">
+  <style>
+    /* Estilos locales solo para la tabla/buscador */
+    .buscador {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #1e293b;
+      background: #020617;
+      color: #e5e7eb;
+      margin-top: 10px;
+      outline: none;
+    }
+
+    .tabla-wrap {
+      overflow-x: auto;
+      margin-top: 12px;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      background: #020617;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 700px;
+    }
+
+    th, td {
+      padding: 12px 10px;
+      border-bottom: 1px solid #1e293b;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: #38bdf8;
+      font-weight: 800;
+      position: sticky;
+      top: 0;
+      background: #020617;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      color: #cbd5f5;
+      border: 1px solid #1e293b;
+      padding: 2px 8px;
+      border-radius: 999px;
+      margin-left: 6px;
+    }
+  </style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="logo">
+    <h1>OLYMPUS ARK 🇲🇽</h1>
+    <p class="sub">Mercado interno · Moneda: Fresas 🍓</p>
+  </div>
+  <nav>
+    <a href="index.html">Inicio</a>
+    <a href="horarios.html">Horarios</a>
+    <a href="moneda.html">Fresas 🍓</a>
+    <a href="kits.html">Kits</a>
+    <a href="mercado.html" class="activo">Mercado</a>
+    <a href="donaciones.html">Donaciones</a>
+    <a href="discord.html">Discord</a>
+  </nav>
+</header>
+
+<main class="contenedor">
+
+  <section class="hero">
+    <h2>Mercado de dinos</h2>
+    <p>
+      Precios de venta y compra con administración. Los dinos se entregan
+      <b>lvl 150 base</b> (≈ <b>225 final</b>).
+    </p>
+  </section>
+
+  <section class="card" style="margin-top:14px;">
+    <h3>Aclaraciones</h3>
+    <ul class="lista">
+      <li>Los precios son <b>individuales</b> (no por pareja).</li>
+      <li><b>Venta</b> = precio al que administración vende.</li>
+      <li><b>Compra</b> = precio al que administración compra.</li>
+      <li>Pedidos y entrega se coordinan por <b>ticket</b> en Discord.</li>
+      <li>Si un dino no aparece, pregunta en Discord.</li>
+    </ul>
+
+    <input id="filtro" class="buscador" type="text" placeholder="Buscar dino... (ej. rex, giga, argen, etc.)">
+    <p class="nota">Tip: escribe una parte del nombre para filtrar la tabla.</p>
+
+    <div class="tabla-wrap">
+      <table id="tablaDinos">
+        <thead>
+          <tr>
+            <th>Dino</th>
+            <th>Venta (🍓)</th>
+            <th>Compra (🍓)</th>
+            <th>Notas</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- EJEMPLOS (puedes borrar estos 3 cuando pegues tu lista real) -->
+          <tr>
+            <td>Argentavis <span class="tag">ejemplo</span></td>
+            <td>600</td>
+            <td>60</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Rex Normal <span class="tag">ejemplo</span></td>
+            <td>3000</td>
+            <td>300–400</td>
+            <td>—</td>
+          </tr>
+          <tr>
+            <td>Giganoto <span class="tag">ejemplo</span></td>
+            <td>6000</td>
+            <td>600</td>
+            <td>—</td>
+          </tr>
+          <!-- FIN EJEMPLOS -->
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p>OLYMPUS ARK 🇲🇽 · Mercado</p>
+</footer>
+
+<script>
+  // Buscador simple para filtrar filas por nombre de dino
+  const input = document.getElementById('filtro');
+  const tabla = document.getElementById('tablaDinos');
+  const filas = () => Array.from(tabla.querySelectorAll('tbody tr'));
+
+  input.addEventListener('input', () => {
+    const q = input.value.toLowerCase().trim();
+    filas().forEach(tr => {
+      const texto = tr.innerText.toLowerCase();
+      tr.style.display = texto.includes(q) ? '' : 'none';
+    });
+  });
+</script>
+
+</body>
+</html>
